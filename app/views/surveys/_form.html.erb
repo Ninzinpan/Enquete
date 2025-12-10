@@ -1,0 +1,32 @@
+<%= form_with(model: survey) do |form| %>
+  <% if survey.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+        <% survey.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div style="mergin-bottom:20px; border-bottom: 2px solid #333; padding-bottom: 10px;">
+  <div>
+
+  <%= form.label :title,"アンケートタイトル"%>
+    <%= form.text_field :title,style: "display: block" %>
+  </div>
+
+  <div>
+    <%= form.label :description,"説明"%>
+    <%= form.text_area :description ,style: "display: block"%>
+  </div>
+</div>
+  <div>
+  <%= form.fields_for :questions do  |option_form| %>
+    <div style="mergin-left:20px; mergin-top:10px;">
+    <small></small>
+
+    <%= form.submit %>
+  </div>
+<% end %>
